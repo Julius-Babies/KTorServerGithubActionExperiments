@@ -4,5 +4,5 @@ EXPOSE 8080:8080
 RUN mkdir /app
 RUN mkdir /config
 RUN mkdir /temp
-COPY ./build/libs/KTorServerGithubActionExperiments.jar /app/app.jar
+COPY ./build/libs/KTorServerGithubActionExperiments-all.jar /app/app.jar
 CMD ["java","-jar","/app/app.jar"]
