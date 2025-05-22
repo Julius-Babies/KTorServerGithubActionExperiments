@@ -13,8 +13,5 @@ RUN gradle buildFatJar --no-daemon
 FROM eclipse-temurin:21.0.1_12-jre-alpine
 EXPOSE 8080:8080
 
-RUN mkdir /app
-RUN mkdir /config
-RUN mkdir /temp
 COPY --from=build /home/gradle/src/build/libs/KTorServerGithubActionExperiments-all.jar /app/app.jar
 CMD ["java","-jar","/app/app.jar"]
