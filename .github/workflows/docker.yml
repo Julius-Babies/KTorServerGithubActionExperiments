@@ -1,0 +1,23 @@
+name: docker.yml
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    build:
+        name: Build with Dockerfile
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+            -   name: Set up Docker Buildx
+                uses: docker/setup-buildx-action@v3
+            -   name: Build and push
+                uses: docker/build-push-action@v2
+                with:
+                    push: false
+                    tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+                    build-args: |
+                        MAVEN_USERNAME=${{ secrets.MAVEN_USERNAME }}
+                        MAVEN_PASSWORD=${{ secrets.MAVEN_PASSWORD }}
